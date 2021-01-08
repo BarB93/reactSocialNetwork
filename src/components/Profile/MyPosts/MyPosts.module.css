@@ -1,0 +1,17 @@
+.profile {
+    grid-area: c;
+
+    background: yellow;
+}
+
+.profile img {
+    display: block;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0 -93px;
+}
+
+.my_posts {
+    margin: 0 0 20px 0;
+}

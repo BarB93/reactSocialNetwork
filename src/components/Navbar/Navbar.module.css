@@ -1,0 +1,20 @@
+.nav {
+    grid-area: n;
+
+    padding: 20px;
+    background: #ffffff;
+}
+
+.item a {
+    font-size: 16px;
+    color:#A396B0;
+    text-decoration: none;
+}
+
+.item a:hover {
+    text-decoration: underline;
+}
+
+.item a.active {
+    color: gold;
+}

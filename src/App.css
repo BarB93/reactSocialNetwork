@@ -1,0 +1,45 @@
+*,*:before,*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 14px;
+  color:#A396B0;
+  background: #EBEBEB;
+}
+
+li {
+  list-style: none;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.global_avatar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px 0 0;
+}
+
+.app-container {
+  grid-template-areas:
+    "h h"
+    "n c ";
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 2fr 10fr;
+   grid-gap: 0;
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-content {
+  grid-area: c;
+  padding:20px 30px 20px 40px;
+
+}
