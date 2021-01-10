@@ -8,6 +8,7 @@ import Music from "./components/Music/Music.jsx";
 import News from "./components/News/News";
 import { BrowserRouter, Route } from 'react-router-dom';
 
+console.log("Hello world")
 const App = (props) => (
   <BrowserRouter>
     <div className="app-container">
