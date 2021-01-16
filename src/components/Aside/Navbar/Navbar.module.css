@@ -1,8 +1,5 @@
 .nav {
-    grid-area: n;
-
-    padding: 20px;
-    background: #ffffff;
+    margin-bottom: 60px;
 }
 
 .item a {

@@ -1,1 +1,17 @@
+.message {
+    margin: 0 0 10px 0;
+    padding: 5px;
+    border-radius: 5px;
+    color: #000000;
 
+}
+
+.my {
+    background: rgba(0,128,0,.3);
+}
+
+.not_my {
+    align-self: flex-end;
+    background: rgba(255,165,0,.3);
+
+}
