@@ -8,7 +8,7 @@ const Aside = () => {
     return (
         <aside className={s.aside}>
             <Navbar />
-            {/*<FrendsContainer />*/}
+            <FrendsContainer />
         </aside>
     )
 };

@@ -5,7 +5,7 @@ import {connect} from "react-redux";
         state: state.aside
     })
 
-    const mapDispatchToProps = () => ({
+    const mapDispatchToProps = (dispatch) => ({
 
     })
 

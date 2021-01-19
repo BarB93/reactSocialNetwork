@@ -4,7 +4,7 @@ import Frend from "../Frend/Frend";
 
 const Frends = (props) => {
 
-    let frends = props.frends.map((frend, index) => {
+    let frends = props.state.frends.map((frend, index) => {
 
         return <Frend avatar={frend.avatar} name={frend.name} id={frend.id}/>
     }).slice(0, 3)
