@@ -1,14 +1,14 @@
 import s from './Aside.module.css'
 import Navbar from "./Navbar/Navbar";
-import Frends from "./Frends/Frends";
+import FrendsContainer from "./Frends/FrendsContainer";
 
 
-const Aside = (props) => {
+const Aside = () => {
 
     return (
         <aside className={s.aside}>
             <Navbar />
-            <Frends frends={props.state.frends}/>
+            {/*<FrendsContainer />*/}
         </aside>
     )
 };
