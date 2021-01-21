@@ -6,7 +6,7 @@ const Frends = (props) => {
 
     let frends = props.state.frends.map((frend, index) => {
 
-        return <Frend avatar={frend.avatar} name={frend.name} id={frend.id}/>
+        return <Frend avatar={frend.avatar} key={frend.id} name={frend.name} id={frend.id}/>
     }).slice(0, 3)
 
     return (

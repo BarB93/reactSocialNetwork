@@ -1,4 +1,3 @@
-import Post from '../Post/Post'
 import s from './ProfileInfo.module.css'
 
 const ProfileInfo = function (props){

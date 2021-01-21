@@ -13,31 +13,33 @@ let initialStore = {
 
 const profileReducer = (state = initialStore, action) => {
 
-    function addPost() {
-        const posts = state.posts
-        posts.push({
-            id: ++posts.length,
-            message: state.newPostText,
-            likes: 0,
-        })
-        state.newPostText = ''
-
-    }
-    function updateNewPostText(newText) {
-        state.newPostText = newText
-
-    }
-
     switch (action.type) {
-
         case ADD_POST:
-            addPost()
-            return state
+            return addPost()
         case UPDATE_POST_TEXT:
-            updateNewPostText(action.newText)
-            return state
+            return updateNewPostText(action.newText)
         default:
             return state
+    }
+
+    function addPost() {
+        const post = {
+            id: state.length + 1,
+            message: state.newPostText,
+            likes: 0,
+        }
+
+        return {
+            ...state,
+            posts: [...state.posts, post],
+            newPostText: ''
+        }
+    }
+    function updateNewPostText(newText) {
+        return {
+            ...state,
+            newPostText: newText
+        }
     }
 
 }
