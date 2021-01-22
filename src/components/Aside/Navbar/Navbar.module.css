@@ -6,6 +6,7 @@
     font-size: 16px;
     color:#A396B0;
     text-decoration: none;
+    white-space:  nowrap;
 }
 
 .item a:hover {
@@ -14,4 +15,8 @@
 
 .item a.active {
     color: gold;
+}
+
+.item.users {
+    margin-top: 50px;
 }

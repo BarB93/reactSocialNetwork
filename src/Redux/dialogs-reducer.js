@@ -3,11 +3,11 @@ const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 
 let initialStore = {
     dialogs: [
-        {id: 1, name: 'Борис Б'},
-        {id: 2, name: 'Натали Б'},
-        {id: 3, name: 'Лариса'},
-        {id: 4, name: 'Андрей'},
-        {id: 5, name: 'Макс'},
+        {id: 1, name: 'Борис Б',avatar: 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'},
+        {id: 2, name: 'Натали Б',avatar: 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'},
+        {id: 3, name: 'Лариса',avatar: 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'},
+        {id: 4, name: 'Андрей',avatar: 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'},
+        {id: 5, name: 'Макс',avatar: 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'},
     ],
     messages: [
         {id: 1, message: 'Привет', who: 'my'},

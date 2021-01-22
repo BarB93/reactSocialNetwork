@@ -12,6 +12,7 @@ import {connect} from "react-redux";
         return {
             updatePostText: (text) => {
                 dispatch(updatePostTextActionCreator(text))
+
             },
             addPost: () => {
                 dispatch(addPostActionCreator())

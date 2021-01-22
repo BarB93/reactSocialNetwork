@@ -7,7 +7,6 @@ let initialStore = {
         {id: 2, message: 'учу реакт', likes: 23},
         {id: 3, message: 'вообще сил много', likes: 17},
     ],
-
         newPostText: ''
 }
 

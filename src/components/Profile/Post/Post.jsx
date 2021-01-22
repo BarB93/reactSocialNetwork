@@ -1,7 +1,7 @@
 import s from './Post.module.css'
 
 const Post = (props) => {
-    let avatar = props.avatar || "https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png"
+    let avatar = props.avatar || 'https://cdn.iconscout.com/icon/free/png-256/avatar-380-456332.png'
     return (
         <div className={s.post}>
             <img src={avatar} alt="Avatar" />
