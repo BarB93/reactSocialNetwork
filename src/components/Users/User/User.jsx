@@ -3,7 +3,7 @@ import s from "./User.module.css"
 import userFoto from "../../../accets/img/avatar.webp"
 
 const User = (props) => {
-
+    
     return (
         <div className={s.user}>
             <div className={s.left_block}>

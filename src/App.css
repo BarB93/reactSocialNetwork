@@ -49,6 +49,7 @@ button {
   color: #fff;
   padding: 10px 20px;
   transition:all .2s linear;
+  background: #3DB16B;
 }
 
 button:hover {
