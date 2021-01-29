@@ -56,3 +56,7 @@ button:hover {
   cursor: pointer;
   background: #00732D;
 }
+
+button:focus {
+  outline: none;
+}

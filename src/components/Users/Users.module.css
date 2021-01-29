@@ -7,3 +7,38 @@
 .wrapper {
     text-align: center;
 }
+
+
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.buttonPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 47px;
+    height: 35px;
+
+    display: none;
+}
+
+.buttonPage.active {
+    font-weight: 800;
+    background: #000;
+}
+
+.buttonPage.show {
+    display: flex;
+}
+
+
+
+
+.get_users {
+    margin: 0 0 20px 0;
+}
