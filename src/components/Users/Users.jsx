@@ -36,9 +36,12 @@ let Users = (props) => {
             <div>
                 {/*<button className={s.get_users} onClick={this.getUsers}>Получить список людей</button>*/}
                 <div>{users}</div>
-                <div className={s.wrapper}>
-                    <button className={s.button}>Показать еще</button>
-                </div>
+                {/*<div className={s.wrapper}>*/}
+                {/*    <button className={s.button}>Показать еще</button>*/}
+                {/*</div>*/}
+            </div>
+            <div className={s.buttons}>
+                {pages}
             </div>
         </div>
     )

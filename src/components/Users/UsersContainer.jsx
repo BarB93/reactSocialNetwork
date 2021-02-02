@@ -25,7 +25,9 @@ class UsersContainer extends React.Component {
     onPageChanged = (p) => {
         this.props.setIsFetching(true)
         this.props.setCurrentPage(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${p}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${p}`,{
+            withCredentials:true
+        })
             .then(response => {
                 this.props.setIsFetching(false)
                 let arr = response.data.items

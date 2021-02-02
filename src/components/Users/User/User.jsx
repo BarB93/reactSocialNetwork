@@ -2,25 +2,28 @@ import React from "react";
 import s from "./User.module.css"
 import userFoto from "../../../accets/img/avatar.webp"
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 
 const User = (props) => {
-    
+
     return (
         <div className={s.user}>
             <div className={s.left_block}>
                 <NavLink to={'/profile/' + props.user.id}>
-                   <img className={`global_avatar ${s.avatar}`} src={props.user.photos.small?props.user.photos.small: userFoto}/>
+                    <img className={`global_avatar ${s.avatar}`}
+                         src={props.user.photos.small ? props.user.photos.small : userFoto}/>
                 </NavLink>
                 <div>
-                   {
+                    {
                         props.user.isSubscribe
-                        ? <button  className={s.button} onClick={() => {
-                            props.unsubscribe(props.id)
-                        }}>Отписаться</button>
-                        : <button className={s.button}  onClick={() => {
-                            props.subscribe(props.id)
-                        }}>Подписаться</button>
+                            ? <button className={s.button} onClick={() => {
+                                props.unsubscribe(props.id)
+
+                            }}>Отписаться</button>
+                            : <button className={s.button} onClick={() => {
+                                 props.subscribe(props.id)
+                            }}>Подписаться</button>
                     }
                 </div>
             </div>

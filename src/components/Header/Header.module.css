@@ -1,11 +1,21 @@
 .header {
     grid-area: h;
-
+    display: flex;
+    align-items: center;
 
     padding:10px 20px;
     background: #3DB16B;
 }
 
+
 .header img {
     width: 30px;
+    margin-right: 60px;
+}
+
+.loginBlock {
+    flex: 1 1 auto;
+    color:#000;
+    text-align: right;
+
 }
