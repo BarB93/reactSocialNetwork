@@ -11,3 +11,8 @@
     object-fit: cover;
     object-position: 0 -93px;
 }
+
+.name {
+    color: black;
+    font-size: 18px;
+}

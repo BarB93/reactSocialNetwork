@@ -51,8 +51,15 @@
     border: none;
 }
 
+.button:disabled {
+    background: yellow;
+    font-size: 30;
+}
+
 .location {
     text-align: right;
 }
+
+
 
 

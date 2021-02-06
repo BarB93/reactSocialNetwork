@@ -1,50 +1,35 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {
-    setCurrentPage, setIsFetching, setTotalUsersCount,
-    setUsers,
-    userSubscribe, userUnsubscribe
-
-} from '../../Redux/users-reducer';
-import * as axios from 'axios';
+import {getUsers, setCurrentPage, subscribe, unsubscribe} from '../../Redux/users-reducer';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
+
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
-            .then(response => {
-                this.props.setIsFetching(false)
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (p) => {
-        this.props.setIsFetching(true)
         this.props.setCurrentPage(p)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${p}`,{
-            withCredentials:true
-        })
-            .then(response => {
-                this.props.setIsFetching(false)
-                let arr = response.data.items
-                this.props.setUsers(arr)
-            })
+        this.props.getUsers(p, this.props.pageSize)
     }
 
     render() {
+
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users currentPage={this.props.currentPage}
                    totalUsersCount={this.props.totalUsersCount}
                    pageSize={this.props.pageSize}
-                   onPageChanged={this.onPageChanged}
-                   unsubscribe={this.props.userUnsubscribe}
-                   subscribe={this.props.userSubscribe}
                    users={this.props.users}
+                   subscribingProgress={this.props.subscribingProgress}
+                   onPageChanged={this.onPageChanged}
+                   unsubscribe={this.props.unsubscribe}
+                   subscribe={this.props.subscribe}
+                   toggleSubscribingProgress={this.props.toggleSubscribingProgress}
+
             />
         </>
     }
@@ -56,11 +41,14 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        subscribingProgress: state.usersPage.subscribingProgress
 
     }
 }
 
 
-export default connect(mapStateToProps, {userSubscribe, userUnsubscribe,
-    setUsers, setCurrentPage, setTotalUsersCount, setIsFetching})(UsersContainer)
+export default connect(mapStateToProps, {
+    setCurrentPage, getUsers,
+    subscribe, unsubscribe
+})(UsersContainer)

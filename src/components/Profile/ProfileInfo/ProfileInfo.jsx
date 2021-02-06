@@ -11,7 +11,7 @@ const ProfileInfo = function (props){
     return (
         <div className={s.profile_info}>
             <img className={s.avatar + ' global_avatar'} src={avatar} alt='Avatar'/>
-            <div className={s.description}></div>
+            <div className={s.name}>{props.profile.fullName}</div>
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React from "react";
 import s from "./User.module.css"
 import userFoto from "../../../accets/img/avatar.webp"
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
 
 
 const User = (props) => {
@@ -16,14 +15,18 @@ const User = (props) => {
                 </NavLink>
                 <div>
                     {
-                        props.user.isSubscribe
-                            ? <button className={s.button} onClick={() => {
-                                props.unsubscribe(props.id)
+                        props.user.followed
+                            ? <button disabled={props.subscribingProgress.some(id => id === props.id)}
+                                      className={s.button}
+                                      onClick={() => {
+                                          props.unsubscribe(props.id)
+                                      }}>Отписаться</button>
 
-                            }}>Отписаться</button>
-                            : <button className={s.button} onClick={() => {
-                                 props.subscribe(props.id)
-                            }}>Подписаться</button>
+                            : <button disabled={props.subscribingProgress.some(id => id === props.id)}
+                                      className={s.button}
+                                      onClick={() => {
+                                          props.subscribe(props.id)
+                                      }}>Подписаться</button>
                     }
                 </div>
             </div>
