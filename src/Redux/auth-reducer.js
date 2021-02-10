@@ -46,12 +46,22 @@ export const getAuthUserData = () => {
 
        authAPI.getAuth()
             .then(response => {
-
                 if(response.resultCode === 0) {
                     dispatch(setIsFetching(false))
                     let {id,login,email} = response.data
                     dispatch(setAuthUserData(id, login, email))
                 }
+            })
+    }
+}
+
+//beta
+export const postAuthentication = (email,password,rememberMe= false) => {
+    return (dispatch) => {
+
+        authAPI.postAuth(email,password,rememberMe)
+            .then(data => {
+                debugger
             })
     }
 }

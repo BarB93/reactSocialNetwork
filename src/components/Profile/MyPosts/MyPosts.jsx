@@ -1,7 +1,16 @@
 import Post from '../Post/Post'
 import s from './MyPosts.module.css'
 import React from "react";
+import {Field} from "redux-form";
 
+const MyPostForm = (props) => {
+    return (
+        <form>
+            <div><Field name={'post'} placeholder={'Введите текст'} component={'textarea'} /></div>
+            <div><button type={'submit'}>Добавить пост</button></div>
+        </form>
+    )
+}
 
 
 const MyPosts = (props) => {

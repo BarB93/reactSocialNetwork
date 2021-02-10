@@ -18,6 +18,11 @@ const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 const Login = (props) => {
     const onSubmit = (formData) => {
         console.log(formData)
+        //beta
+        if(formData.login && formData.password){
+            props.postAuthentication(formData.login,formData.password, formData.rememberMe ? true:false)
+        }
+
     }
 
     return (
