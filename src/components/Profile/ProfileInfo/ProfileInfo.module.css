@@ -16,3 +16,8 @@
     color: black;
     font-size: 18px;
 }
+
+.profile_info {
+    display: flex;
+    margin-bottom: 25px;
+}

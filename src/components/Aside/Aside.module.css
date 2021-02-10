@@ -1,8 +1,10 @@
 .aside {
     grid-area: n;
 
+    height: 100%;
     padding: 20px;
     background: #ffffff;
+
 }
 
 

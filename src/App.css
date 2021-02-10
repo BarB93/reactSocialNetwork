@@ -8,6 +8,7 @@ body {
   background: #EBEBEB;
 }
 
+
 li {
   list-style: none;
   font-size: 20px;
@@ -32,9 +33,10 @@ a {
   display: grid;
   grid-template-rows: auto 1fr;
   grid-template-columns: 2fr 10fr;
-   grid-gap: 0;
+  grid-gap: 0;
 
   max-width: 1200px;
+  min-height: 100ch;
   margin: 0 auto;
 }
 
