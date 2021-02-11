@@ -1,5 +1,4 @@
 const SEND_MESSAGE = 'SEND-MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT'
 
 let initialStore = {
     dialogs: [
@@ -20,7 +19,7 @@ let initialStore = {
         {id: 8, message: 'Как ты2', who: 'my'},
         {id: 9, message: 'Йоу, норм2', who: 'not_my'}
     ],
-    newMessageText: ''
+
 }
 
 const dialogsReducer = (state = initialStore, action) => {
@@ -28,18 +27,16 @@ const dialogsReducer = (state = initialStore, action) => {
 
     switch (action.type) {
         case SEND_MESSAGE:
-            return sendMessage()
-        case UPDATE_MESSAGE_TEXT:
-            return  updateNewMessageText(action.newText)
+            return sendMessage(action.newMessage)
         default:
             return state
     }
 
-    function sendMessage() {
+    function sendMessage(newMessage) {
 
         const message = {
             id: state.messages.length + 1,
-            message: state.newMessageText,
+            message: newMessage,
             who: 'my',
         }
 
@@ -49,20 +46,12 @@ const dialogsReducer = (state = initialStore, action) => {
             newMessageText: ''
         }
     }
-    function updateNewMessageText(newText) {
-        return {
-            ...state,
-            newMessageText : newText
-        }
-    }
+
 }
 
-export const sendMessageTextActionCreator = () => ({
-    type:SEND_MESSAGE
-})
-export const updateMessageTextActionCreator = (text) => ({
-    type: UPDATE_MESSAGE_TEXT,
-    newText: text
+export const sendMessageTextActionCreator = (newMessage) => ({
+    type:SEND_MESSAGE,
+    newMessage
 })
 
 export default  dialogsReducer

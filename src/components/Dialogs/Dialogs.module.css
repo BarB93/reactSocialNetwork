@@ -18,7 +18,7 @@
     align-items: flex-start;
 }
 
-.textarea textarea {
+.textarea {
     resize: none;
     padding: 10px 20px;
 }
