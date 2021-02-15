@@ -14,12 +14,15 @@ const initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
-    subscribingProgress: []
+    subscribingProgress: [],
+    fake:10
 }
 
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case "FAKE": return {...state,fake: state.fake + 1}
+            return subscribeToUser()
         case SUBSCRIBE:
             return subscribeToUser()
         case UNSUBSCRIBE:
@@ -113,11 +116,11 @@ export const toggleSubscribingProgress = (isFetching, userId) => {
     }
 }
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
     return (dispatch) => {
         dispatch(setIsFetching(true))
-
-        usersAPI.getUsers(currentPage, pageSize)
+        dispatch(setCurrentPage(page))
+        usersAPI.getUsers(page, pageSize)
             .then(data => {
                 dispatch(setIsFetching(false))
                 dispatch(setUsers(data.items))

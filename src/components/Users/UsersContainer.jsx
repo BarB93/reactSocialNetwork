@@ -1,25 +1,31 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {getUsers, setCurrentPage, subscribe, unsubscribe} from '../../Redux/users-reducer';
+import {requestUsers, subscribe, unsubscribe} from '../../Redux/users-reducer';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
-import {WithAuthRedirect} from "../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getIsFetching,
+    getPageSize,
+    getSubscribingProgress,
+    getTotalUsersCount, getUsers,
+
+} from "../../Redux/users-selectors";
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onPageChanged = (p) => {
-        this.props.setCurrentPage(p)
-        this.props.getUsers(p, this.props.pageSize)
+        this.props.requestUsers(p, this.props.pageSize)
     }
 
     render() {
-
+        console.log('USERS')
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users currentPage={this.props.currentPage}
@@ -37,9 +43,7 @@ class UsersContainer extends React.Component {
     }
 }
 
-let AuthRedirectComponent = WithAuthRedirect(UsersContainer)
-
-const mapStateToProps = (state) => {
+/*const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -49,12 +53,25 @@ const mapStateToProps = (state) => {
         subscribingProgress: state.usersPage.subscribingProgress
 
     }
+}*/
+
+const mapStateToProps = (state) => {
+    console.log('mapStateToProps  USERS')
+
+    return {
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        subscribingProgress: getSubscribingProgress(state)
+
+    }
 }
 
 
 
 export default compose(
-    connect(mapStateToProps, {setCurrentPage, getUsers, subscribe, unsubscribe
+    connect(mapStateToProps, {requestUsers, subscribe, unsubscribe
     }),
-    WithAuthRedirect
 )(UsersContainer)

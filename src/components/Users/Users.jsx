@@ -1,7 +1,6 @@
 import React from 'react'
 import s from "./Users.module.css";
 import User from "./User/User";
-import {setIsFetching, toggleSubscribingProgress} from "../../Redux/users-reducer";
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -22,6 +21,7 @@ let Users = (props) => {
         let classLastBtn = i === 1 ? s.lastBtn : ''
 
         pages.push(<button onClick={() => props.onPageChanged(i)}
+                           key={i}
                            className={`${s.buttonPage} 
                            ${classShow} 
                            ${classActive} 

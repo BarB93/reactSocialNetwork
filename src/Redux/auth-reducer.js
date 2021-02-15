@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
@@ -17,8 +18,8 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
+
             }
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
@@ -27,10 +28,10 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthUserData = (userId, email, login) => {
+export const setAuthUserData = (userId, email, login, isAuth) => {
     return {
         type: SET_USER_DATA,
-        data:{userId, email, login}
+        payload:{userId, email, login, isAuth}
     }
 }
 export const setIsFetching = (isFetching) => {
@@ -44,24 +45,40 @@ export const getAuthUserData = () => {
     return (dispatch) => {
         dispatch(setIsFetching(true))
 
-       authAPI.getAuth()
+       return authAPI.getAuth()
             .then(response => {
                 if(response.resultCode === 0) {
                     dispatch(setIsFetching(false))
                     let {id,login,email} = response.data
-                    dispatch(setAuthUserData(id, login, email))
+                    dispatch(setAuthUserData(id, login, email,true))
+                }
+            })
+
+    }
+}
+
+export const login = (email,password,rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email,password,rememberMe)
+            .then(data => {
+
+                if(data.resultCode === 0) {
+                    dispatch(getAuthUserData())
+                }else {
+                    let message = data.messages.length > 0 ? data.messages[0] : 'Some error'
+                    dispatch(stopSubmit("login",{_error:message}))
                 }
             })
     }
 }
 
-//beta
-export const postAuthentication = (email,password,rememberMe= false) => {
+export const logout = () => {
     return (dispatch) => {
-
-        authAPI.postAuth(email,password,rememberMe)
+        authAPI.logout()
             .then(data => {
-                debugger
+                if(data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false))
+                }
             })
     }
 }

@@ -7,6 +7,8 @@ const maxLength = max => value => {
     return value && value.length <= max ? undefined : `Максимальная длина ${max} символов`
 }
 export const maxLength15 = maxLength(15)
+export const maxLength50 = maxLength(50)
+
 
 const minLength = min => value => {
     return value && value.length >= min ? undefined : `Минимальная длина ${min} символов`
