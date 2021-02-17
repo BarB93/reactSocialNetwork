@@ -1,0 +1,39 @@
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.button {
+    background: #3DB16B;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.buttonPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 47px;
+    height: 35px;
+
+    display: none;
+}
+
+.buttonPage.active {
+    font-weight: 800;
+    background: #000;
+}
+
+.buttonPage.show {
+    display: flex;
+}
+
+.get_users {
+    margin: 0 0 20px 0;
+}

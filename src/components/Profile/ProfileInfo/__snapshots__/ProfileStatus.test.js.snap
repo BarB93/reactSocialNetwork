@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileStatus component status from props should be in the state 1`] = `
+<div>
+  <div>
+    <span
+      onDoubleClick={[Function]}
+    >
+      ----
+    </span>
+  </div>
+</div>
+`;

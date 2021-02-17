@@ -1,60 +1,28 @@
 import React from 'react'
-import s from "./Users.module.css";
 import User from "./User/User";
+import Paginator from "../common/Paginator/Paginator";
 
 let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-
-    for (let i = 1; i <= pagesCount; i++) {
-        let classShow = i === 1 || i === pagesCount
-        || i === props.currentPage
-        || i === props.currentPage + 1
-        || i === props.currentPage + 2
-        || i === props.currentPage - 1
-        || i === props.currentPage - 2
-            ? s.show
-            : ''
-
-        let classActive = i === props.currentPage ? s.active : ''
-        let classFirstBtn = i === 1 ? s.firstBtn : ''
-        let classLastBtn = i === 1 ? s.lastBtn : ''
-
-        pages.push(<button onClick={() => props.onPageChanged(i)}
-                           key={i}
-                           className={`${s.buttonPage} 
-                           ${classShow} 
-                           ${classActive} 
-                           ${classFirstBtn} 
-                           ${classLastBtn}`}>{i}</button>)
-    }
-
 
     let users = props.users.map((u) => <User key={u.id}
-                                             id={u.id}
                                              subscribe={props.subscribe}
                                              unsubscribe={props.unsubscribe}
                                              user={u}
                                              subscribingProgress={props.subscribingProgress}
-                                             setIsFetching={props.setIsFetching}
-                                             toggleSubscribingProgress={props.toggleSubscribingProgress}/>)
+    />)
 
+    const pagination = <Paginator totalUsersCount={props.totalUsersCount}
+                                  pageSize={props.pageSize}
+                                  currentPage={props.currentPage}
+                                  onPageChanged={props.onPageChanged}/>
 
     return (
         <div>
-            <div className={s.buttons}>
-                {pages}
-            </div>
+            {pagination}
             <div>
-                {/*<button className={s.get_users} onClick={this.getUsers}>Получить список людей</button>*/}
                 <div>{users}</div>
-                {/*<div className={s.wrapper}>*/}
-                {/*    <button className={s.button}>Показать еще</button>*/}
-                {/*</div>*/}
             </div>
-            <div className={s.buttons}>
-                {pages}
-            </div>
+            {pagination}
         </div>
     )
 }

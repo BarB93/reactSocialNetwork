@@ -16,16 +16,16 @@ const User = (props) => {
                 <div>
                     {
                         props.user.followed
-                            ? <button disabled={props.subscribingProgress.some(id => id === props.id)}
+                            ? <button disabled={props.subscribingProgress.some(id => id === props.user.id)}
                                       className={s.button}
                                       onClick={() => {
                                           props.unsubscribe(props.id)
                                       }}>Отписаться</button>
 
-                            : <button disabled={props.subscribingProgress.some(id => id === props.id)}
+                            : <button disabled={props.subscribingProgress.some(id => id === props.user.id)}
                                       className={s.button}
                                       onClick={() => {
-                                          props.subscribe(props.id)
+                                          props.subscribe(props.user.id)
                                       }}>Подписаться</button>
                     }
                 </div>

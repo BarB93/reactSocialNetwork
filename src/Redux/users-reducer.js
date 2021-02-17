@@ -1,4 +1,5 @@
 import {usersAPI} from "../api/api";
+import {updateObjectInArray} from "../utils/objects-helpers";
 
 const SUBSCRIBE = 'SUBSCRIBE'
 const UNSUBSCRIBE = 'UNSUBSCRIBE'
@@ -15,18 +16,16 @@ const initialState = {
     currentPage: 1,
     isFetching: true,
     subscribingProgress: [],
-    fake:10
+
 }
 
 const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case "FAKE": return {...state,fake: state.fake + 1}
-            return subscribeToUser()
         case SUBSCRIBE:
-            return subscribeToUser()
+            return {...state, users: updateObjectInArray(state.users,action.userId, 'id',{followed:true})}
         case UNSUBSCRIBE:
-            return unsubscribeToUser()
+            return {...state, users: updateObjectInArray(state.users,action.userId, 'id',{followed:false})}
         case SET_USERS:
             return {...state, users: action.users}
         case SET_CURRENT_PAGE:
@@ -43,34 +42,7 @@ const usersReducer = (state = initialState, action) => {
         default:
             return state
     }
-
-    function subscribeToUser() {
-
-        return {
-            ...state,
-            users: state.users.map(u => {
-                if (u.id === action.userId) {
-                    return {...u, followed: true}
-                }
-                return u
-            })
-        }
-    }
-
-    function unsubscribeToUser() {
-
-        return {
-            ...state,
-            users: state.users.map(u => {
-                if (u.id === action.userId) {
-                    return {...u, followed: false}
-                }
-                return u
-            })
-        }
-    }
 }
-
 
 export const userSubscribe = (userId) => {
     return {
@@ -116,45 +88,34 @@ export const toggleSubscribingProgress = (isFetching, userId) => {
     }
 }
 
-export const requestUsers = (page, pageSize) => {
-    return (dispatch) => {
-        dispatch(setIsFetching(true))
-        dispatch(setCurrentPage(page))
-        usersAPI.getUsers(page, pageSize)
-            .then(data => {
-                dispatch(setIsFetching(false))
-                dispatch(setUsers(data.items))
-                dispatch(setTotalUsersCount(data.totalCount))
-            })
-    }
-}
-export const unsubscribe = (id) => {
-    return (dispatch) => {
-        dispatch(toggleSubscribingProgress(true, id))
-        usersAPI.deleteUsers(id)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(userUnsubscribe(id))
-                }
-                dispatch(toggleSubscribingProgress(false, id))
-            })
-    }
-}
-export const subscribe = (id) => {
+export const requestUsers = (page, pageSize) => async (dispatch) => {
+    dispatch(setIsFetching(true))
+    dispatch(setCurrentPage(page))
+    const response = await usersAPI.getUsers(page, pageSize)
 
-    return (dispatch) => {
+    dispatch(setIsFetching(false))
+    dispatch(setUsers(response.items))
+    dispatch(setTotalUsersCount(response.totalCount))
 
-        dispatch(toggleSubscribingProgress(true, id))
-        usersAPI.postUsers(id)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(userSubscribe(id))
-                }
-                dispatch(toggleSubscribingProgress(false, id))
-            })
-    }
 }
 
+const subscribeUnsubscribeFlow = async (dispatch, userId, apiMethod, actionCreator) => {
+    dispatch(toggleSubscribingProgress(true, userId))
+
+    const response = await apiMethod(userId)
+    if (response.resultCode === 0) {
+        dispatch(actionCreator(userId))
+    }
+
+    dispatch(toggleSubscribingProgress(false, userId))
+}
+
+export const unsubscribe = (id) => async (dispatch) => {
+    await subscribeUnsubscribeFlow(dispatch,id,usersAPI.unsubscribe,userUnsubscribe)
+}
+export const subscribe = (id) => async (dispatch) => {
+    await subscribeUnsubscribeFlow(dispatch,id,usersAPI.subscribe,userSubscribe)
+}
 
 
 export default usersReducer
