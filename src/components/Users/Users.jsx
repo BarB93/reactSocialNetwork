@@ -11,7 +11,7 @@ let Users = (props) => {
                                              subscribingProgress={props.subscribingProgress}
     />)
 
-    const pagination = <Paginator totalUsersCount={props.totalUsersCount}
+    const pagination = <Paginator totalItemsCount={props.totalUsersCount}
                                   pageSize={props.pageSize}
                                   currentPage={props.currentPage}
                                   onPageChanged={props.onPageChanged}/>
@@ -22,7 +22,6 @@ let Users = (props) => {
             <div>
                 <div>{users}</div>
             </div>
-            {pagination}
         </div>
     )
 }

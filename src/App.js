@@ -4,7 +4,7 @@ import Music from "./components/Music/Music.jsx";
 import News from "./components/News/News";
 import Aside from "./components/Aside/Aside";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {Route, withRouter} from 'react-router-dom'
+import {HashRouter,BrowserRouter,Route, withRouter} from 'react-router-dom'
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -13,7 +13,6 @@ import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
-import {BrowserRouter} from "react-router-dom";
 import store from "./Redux/redux-store";
 
 class App extends React.Component {
@@ -50,11 +49,11 @@ const AppContainer = compose(withRouter,
 
 const SamuraiApp = (props) => {
     return (
-        <BrowserRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>)
+        </HashRouter>)
 }
 
 
