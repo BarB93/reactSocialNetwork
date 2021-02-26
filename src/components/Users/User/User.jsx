@@ -19,7 +19,7 @@ const User = (props) => {
                             ? <button disabled={props.subscribingProgress.some(id => id === props.user.id)}
                                       className={s.button}
                                       onClick={() => {
-                                          props.unsubscribe(props.id)
+                                          props.unsubscribe(props.user.id)
                                       }}>Отписаться</button>
 
                             : <button disabled={props.subscribingProgress.some(id => id === props.user.id)}

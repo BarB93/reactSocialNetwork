@@ -19,5 +19,80 @@
 
 .profile_info {
     display: flex;
-    margin-bottom: 25px;
+    margin:0 0 25px 0;
+}
+
+.profile_data {
+    flex: 1 1 auto;
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 1px 0 0 lightgray,0 0 0 1px lightgray;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.profile_ava {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 1px 0 0 lightgray,0 0 0 1px lightgray;
+    border-radius: 5px;
+    margin-right: 20px;
+ }
+
+.avatar {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.profile_contact {
+    display: flex;
+    margin-left: 10px;
+}
+
+.profile_contact_value {
+    float: right;
+}
+
+.profile_contact_title {
+    min-width: 70px;
+}
+
+.profileData_button {
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+.profileData_button:hover {
+    text-decoration: underline;
+}
+
+.profile_button {
+    opacity: 0;
+    color: inherit;
+    background: transparent;
+
+    transition: opacity .1s linear,color .2s linear,background-color .2s linear;
+}
+
+.profile_button:hover {
+    text-decoration: underline;
+}
+
+.profile_data:hover .profile_button{
+    opacity: 1;
+    background: inherit;
+
+}
+
+.profile_button_save {
+    margin: 0 0 15px 0;
+}
+
+.formSummaryError {
+    border:red 2px solid;
+    padding: 5px;
+    color: red;
 }

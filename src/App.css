@@ -3,11 +3,11 @@
 }
 
 body {
+  overflow: hidden;
   font-size: 14px;
   color:#A396B0;
   background: #EBEBEB;
 }
-
 
 li {
   list-style: none;
@@ -35,6 +35,7 @@ a {
   grid-template-columns: 2fr 10fr;
   grid-gap: 0;
 
+  width: 100%;
   max-width: 1200px;
   min-height: 100ch;
   margin: 0 auto;
@@ -46,7 +47,7 @@ a {
 
 }
 
-button {
+button{
   border: none;
   color: #fff;
   padding: 10px 20px;
@@ -56,9 +57,11 @@ button {
 
 button:hover {
   cursor: pointer;
-  background: #00732D;
+  background-color: #00732D;
 }
 
 button:focus {
   outline: none;
 }
+
+

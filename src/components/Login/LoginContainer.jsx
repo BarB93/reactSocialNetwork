@@ -7,12 +7,13 @@ import {Redirect} from "react-router-dom";
 class LoginContainer extends React.Component {
 
     render() {
-        return this.props.isAuth? <Redirect to={'/profile'}/> : <Login login={this.props.login}/>
+        return this.props.isAuth? <Redirect to={'/profile'}/> : <Login captchaUrl={this.props.captchaUrl} login={this.props.login}/>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        captchaUrl:state.auth.captchaUrl,
         isAuth:state.auth.isAuth
     }
 }

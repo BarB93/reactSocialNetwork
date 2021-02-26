@@ -7,7 +7,7 @@ describe('ProfileStatus component', () => {
         const component = create(<ProfileStatus status='Hello world!'/>)
         const root = component.root
         let span = root.findByType('span')
-        expect(span.innerText).toBe('Hello world!')
+        expect(span.children[0]).toBe('Hello world!')
     })
 
     test('after creation span should`t be null', () => {
